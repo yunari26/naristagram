@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   #orderメソッドは関連付けられたオブジェクトに与えられる順序を指定(新しいいいね順)
   has_many :likes, -> { order(created_at: :desc) }, dependent: :destroy
   #親子関係のある関連モデル(今回でいうとPostモデルとPhotoモデル）で、親から子を作成したり保存するときに使える
+  has_many :comments, dependent: :destroy
   accepts_nested_attributes_for :photos
 
   def liked_by(user)
